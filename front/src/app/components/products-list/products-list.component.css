@@ -1,0 +1,59 @@
+/* Grid Layout */
+:host ::ng-deep .grid {
+  display: grid;
+  gap: 1rem; /* Adjust spacing between products */
+}
+
+/* Product Card */
+:host ::ng-deep .product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Card Header */
+:host ::ng-deep .card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+/* Card Content */
+:host ::ng-deep .product-image {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+:host ::ng-deep .product-name {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+:host ::ng-deep .product-description {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Card Footer */
+:host ::ng-deep .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+:host ::ng-deep .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007bff;
+}

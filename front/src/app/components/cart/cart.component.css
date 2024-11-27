@@ -1,0 +1,150 @@
+/* General Container for the Cart Page */
+.cart-container {
+    max-width: 1200px;
+    margin-left: 15%;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+/* Header Section */
+.cart-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.cart-header h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Grid Layout for Products */
+:host ::ng-deep .grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
+}
+
+/* Product Card Styling */
+:host ::ng-deep .product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Card Header (Category and Icon) */
+:host ::ng-deep .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* Product Image */
+:host ::ng-deep .product-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+/* Product Name and Description */
+:host ::ng-deep .product-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+:host ::ng-deep .product-description {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+/* Card Footer (Price and Quantity Controls) */
+:host ::ng-deep .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+/* Price Styling */
+:host ::ng-deep .price {
+    font-size: 1.3rem;
+    color: #007bff;
+}
+
+/* Quantity Controls */
+:host ::ng-deep .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity-btn {
+    padding: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Cart Footer (Total Price and Complete Purchase Button) */
+.cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    border-top: 2px solid #ddd;
+    padding-top: 1rem;
+}
+
+/* Total Price */
+.cart-footer .total {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+/* Complete Purchase Button */
+.complete-btn {
+    background-color: #28a745; /* Green background */
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none; /* Remove border */
+}
+
+.complete-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Styling for the PrimeNG Button (Override default colors) */
+:host ::ng-deep .p-button.complete-btn {
+    background-color: #28a745 !important;
+    color: white !important;
+}
+
+:host ::ng-deep .p-button.complete-btn:hover {
+    background-color: #218838 !important;
+}

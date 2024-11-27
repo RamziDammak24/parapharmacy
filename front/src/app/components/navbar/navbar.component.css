@@ -1,0 +1,90 @@
+/* Header Container */
+:host ::ng-deep .header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Container for Panier */
+:host ::ng-deep .icon-container {
+  display: flex;
+  align-items: center;
+  
+}
+
+:host ::ng-deep .icon-container.paner {
+  display: flex;
+  align-items: center;
+}
+
+/* Blue button and icon styles */
+:host ::ng-deep .icon-container.paner .blue-button {
+  background-color: #0ea5e9; /* Blue background for the button */
+  border-color: #0ea5e9; /* Blue border for the button */
+  color: white; /* White text on the button */
+}
+
+:host ::ng-deep .icon-container.paner .blue-icon {
+  color: #0ea5e9; /* Blue color for the PrimeNG cart icon */
+  margin-left: 10px; /* Space between button and icon */
+}
+
+/* Login Container */
+:host ::ng-deep .login-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Welcome Message Styling */
+:host ::ng-deep .welcome-message {
+  margin-right: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0ea5e9; /* Blue color */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Dropdown Menu Styling */
+:host ::ng-deep .options-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.icon-container-other {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem; /* Equivalent to border-round */
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.pi-shopping-cart {
+  color: #3b82f6 !important; /* Equivalent to text-blue-500 */
+  font-size: 1.25rem; /* Equivalent to text-xl */
+}
+
+
+/* Welcome Message FadeIn Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

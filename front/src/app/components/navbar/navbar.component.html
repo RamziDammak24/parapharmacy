@@ -1,0 +1,25 @@
+<div class="header-container">
+    <p-button label="Acceuil" [text]="true" (click)="homepage()" />
+    <div class="icon-container panier">
+      <p-button label="Panier" [text]="true" (click)="cartPage()" />
+      <div class="icon-container-other">
+        <i class="pi pi-shopping-cart">{{number}}</i>
+    </div>    
+</div>
+    <div class="login-container">
+      <span *ngIf="LoginState" class="welcome-message">Welcome, {{ name }}</span>
+      <p-button
+        icon="pi pi-user"
+        [rounded]="true"
+        [text]="true"
+        severity="info"
+        (click)="showOptions = !showOptions">
+      </p-button>
+      <div *ngIf="showOptions" class="options-dropdown">
+        <p-button *ngIf="LoginState" label="deconnecter" [text]="true" (click)="logout()"></p-button>
+        <p-button *ngIf="!LoginState" label="connecter" [text]="true" (click)="login()"></p-button>
+        <p-button *ngIf="!LoginState" label="inscrire" [text]="true" (click)="register()"></p-button>
+      </div>
+    </div>
+  </div>
+  

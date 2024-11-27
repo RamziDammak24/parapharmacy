@@ -1,0 +1,22 @@
+<div class="col-5 flex align-items-center justify-content-center">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid">
+        <p-messages [(value)]="messages"></p-messages>
+        <div class="field">
+          <label for="email">Email</label>
+          <input pInputText id="email" type="email" formControlName="email"/>
+        </div>
+        <div class="field">
+          <label for="password">Mot de passe</label>
+          <input pInputText id="password" type="password" formControlName="password"/>
+        </div>
+        <div class="button-group">
+            <p-button label="Connexion" class="login-button" type="submit"></p-button>
+        </div>
+        <div class="button-group spacer">
+          <p-button label="Page d'inscription" class="login-button" (click)="register()"></p-button>
+        </div>
+      </div>
+    </form>
+  </div>
+  

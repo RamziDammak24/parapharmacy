@@ -1,0 +1,46 @@
+<div class="cart-container">
+    <div class="cart-header">
+        <h2>Panier d'achat</h2>
+    </div>
+    <p-messages [(value)]="messages"></p-messages>
+    <p-dataView 
+        #dv 
+        [value]="products" 
+        [paginator]="true" 
+        [rows]="12" 
+        filterBy="name" 
+        layout="grid">
+        
+        <ng-template let-product pTemplate="gridItem">
+            <div class="grid grid-nogutter">
+                <div class="col-12 md:col-6 lg:col-4" *ngFor="let product of CartProductsWithQuantities | async">
+                    <div class="product-card">
+                        <div class="card-header">
+                            <i class="pi pi-tag"></i>
+                            <span class="category">{{ product.category }}</span>
+                        </div>
+                        <div class="card-content">
+                            <img [src]="product.image" alt="{{ product.name }}" class="product-image"/>
+                            <h3 class="product-name">{{ product.name }}</h3>
+                            <p class="product-description">{{ product.description }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="price">${{ product.price }}</span>
+                            <div class="quantity-controls">
+                                <p-button label="-" (click)="decreaseQuantity(product)"/>
+                                <span>{{ product.quantity }}</span>
+                                <p-button label="+" (click)="increaseQuantity(product)"/>
+                                <p-button label="retirer" (click)="removeFromCart(product)"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+    
+    <div class="cart-footer">
+        <span class="total">Total: TND{{ totalAmount }}</span>
+        <button label="Finaliser l'achat" class="complete-btn" (click)="buyProduct()">Finaliser l'achat</button>
+    </div>
+</div>

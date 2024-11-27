@@ -1,0 +1,38 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <p-dataView 
+                #dv 
+                [value]="products" 
+                [paginator]="true" 
+                [rows]="12" 
+                filterBy="name" 
+                [sortField]="sortField" 
+                [sortOrder]="sortOrder" 
+                layout="grid"
+            >
+                <ng-template let-product pTemplate="gridItem">
+                    <div class="grid grid-nogutter">
+                        <div class="col-12 md:col-6 lg:col-4" *ngFor="let product of products">
+                            <div class="product-card">
+                                <div class="card-header">
+                                    <i class="pi pi-tag"></i>
+                                    <span class="category">{{ product.category }}</span>
+                                </div>
+                                <div class="card-content">
+                                    <img [src]="product.image" alt="{{ product.name }}" class="product-image"/>
+                                    <h3 class="product-name">{{ product.name }}</h3>
+                                    <p class="product-description">{{ product.description }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <span class="price">${{ product.price }}</span>
+                                    <p-button icon="pi pi-shopping-cart" label="Acheter" (click)="AddToCart(product)"></p-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </div>
+</div>

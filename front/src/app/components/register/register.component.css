@@ -1,0 +1,47 @@
+.col-5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .p-fluid .field {
+    margin-bottom: 1rem;
+  }
+  
+  .p-fluid .field label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .p-fluid .field input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .mt-2 {
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .mt-2:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .col-5 {
+      width: 90%;
+    }
+  }
+  .spacer {
+    margin-top: 1rem; 
+}

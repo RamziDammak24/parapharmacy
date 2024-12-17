@@ -22,7 +22,7 @@ jobs:
           java-version: 17
 
       - name: Compile using Maven
-        run: ./mvnw clean compile
+        run: mvnw clean compile
 
   build:
     runs-on: ubuntu-latest

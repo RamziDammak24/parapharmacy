@@ -6,14 +6,12 @@ services:
     container_name: mysql-db
     image: mysql:8
     environment:
-      MYSQL_ROOT_PASSWORD: ramzi
-      MYSQL_DATABASE: parapharmacy
-      MYSQL_USER: root
-      MYSQL_PASSWORD: ramzi
+      MYSQL_ROOT_PASSWORD: ramzi              # Set the root password
+      MYSQL_DATABASE: parapharmacy            # Define the database to be created
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql             # Persist MySQL data
     ports:
-      - 3308:3306
+      - 3308:3306                             # Map MySQL port
     networks:
       - app-network
     restart: unless-stopped
@@ -27,9 +25,9 @@ services:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: dev
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/parapharmacy  # Changed from host.docker.internal
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: ramzi
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/parapharmacy  # MySQL URL
+      SPRING_DATASOURCE_USERNAME: root      # Use root as the database user
+      SPRING_DATASOURCE_PASSWORD: ramzi    # Use the root password
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
       SPRING_JPA_SHOW_SQL: true
       SPRING_JPA_GENERATE_DDL: true

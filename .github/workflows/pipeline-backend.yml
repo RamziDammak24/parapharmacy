@@ -41,7 +41,7 @@ jobs:
           java-version: 17
 
       - name: Build the project
-        run: ./mvnw clean package
+        run: mvnw clean package
 
   build-image:
     name: Build Docker Image

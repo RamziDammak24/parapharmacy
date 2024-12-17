@@ -3,7 +3,7 @@ name: Build and Push Backend Docker Image
 on:
   push:
     branches:
-      - ci-cd
+      - ci-cd  # Make sure you're pushing to this branch
 
 jobs:
   compile:
@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up JDK
-        uses: actions/setup-jdk@v4
+        uses: actions/setup-java@v4  # Corrected action name
         with:
           distribution: 'corretto'
           java-version: 17
@@ -35,7 +35,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set up JDK
-        uses: actions/setup-jdk@v4
+        uses: actions/setup-java@v4  # Corrected action name
         with:
           distribution: 'corretto'
           java-version: 17

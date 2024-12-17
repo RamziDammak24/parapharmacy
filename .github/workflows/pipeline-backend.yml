@@ -68,7 +68,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}  # Docker Hub username from secrets
           password: ${{ secrets.DOCKERHUB_TOKEN }}  # Docker Hub token from secrets
 
-      - name: Build and push Docker image to Docker Hub
+      - name: Build and push Docker image for frontend
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/parapharmacy-backend:latest ./back  # Build Docker image from /back directory
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/parapharmacy-backend:latest  # Push Docker image to Docker Hub
+          docker build -f ./front/Dockerfile -t ${{ secrets.DOCKER_USERNAME }}/parapharmacy-frontend:latest ./front
+          docker push ${{ secrets.DOCKER_USERNAME }}/parapharmacy-frontend:latest

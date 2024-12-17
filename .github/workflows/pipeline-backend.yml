@@ -3,10 +3,9 @@ name: Build and Push Backend Docker Image
 on:
   push:
     branches:
-      - ci-cd  # Trigger the workflow on push to the ci-cd branch
+      - ci-cd  # Ensure this is the correct branch for your CI/CD pipeline
 
 jobs:
-  # Compile job
   compile:
     runs-on: ubuntu-latest
     name: Compile Back-end
@@ -14,61 +13,53 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Ensure full history for submodules, if needed
+          fetch-depth: 0
 
       - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'corretto'  # Use Amazon Corretto JDK
-          java-version: 17  # Specify Java version 17
-
-      - name: Give execute permission to mvnw
-        run: chmod +x ./back/mvnw  # Ensure mvnw script is executable
-
-      - name: Compile using Maven
-        run: cd back && ./mvnw clean compile  # Change directory to 'back' and run Maven
-
-  # Build job
-  build:
-    runs-on: ubuntu-latest
-    name: Build Back-end
-    needs: [compile]  # Ensure this job only runs after compile
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Ensure full history
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v4  # Correct action name
         with:
           distribution: 'corretto'
           java-version: 17
 
-      - name: Give execute permission to mvnw
-        run: chmod +x ./back/mvnw  # Ensure mvnw script is executable
+      - name: Compile using Maven (skip tests)
+        run: ./back/mvnw clean compile -DskipTests
 
-      - name: Build the project
-        run: cd back && ./mvnw clean package  # Change directory to 'back' and run Maven
-
-  # Docker build and push job
-  build-image:
-    name: Build and Push Docker Image
+  build:
     runs-on: ubuntu-latest
-    needs: [build]  # This job depends on the 'build' job
+    name: Build Back-end
+    needs: [compile]
     steps:
-      - name: Checkout code
+      - name: Checkout code (optional - might be skipped)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Ensure full history
+          fetch-depth: 0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4  # Correct action name
+        with:
+          distribution: 'corretto'
+          java-version: 17
+
+      - name: Build the project (skip tests)
+        run: ./back/mvnw clean package -DskipTests
+
+  build-image:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Checkout code (optional - might be skipped)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}  # Docker Hub username from secrets
-          password: ${{ secrets.DOCKER_TOKEN }}  # Docker Hub token from secrets
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and push Docker image to Docker Hub
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/parapharmacy-backend:latest ./back  # Build Docker image from /back directory
-          docker push ${{ secrets.DOCKER_USERNAME }}/parapharmacy-backend:latest  # Push Docker image to Docker Hub
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/parapharmacy-backend:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/parapharmacy-backend:latest

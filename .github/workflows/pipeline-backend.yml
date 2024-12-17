@@ -26,7 +26,7 @@ jobs:
         run: chmod +x ./back/mvnw  # Give execute permission to mvnw
 
       - name: Compile using Maven
-        run: ./back/mvnw clean compile  # Use Maven wrapper from 'back' directory to compile
+        run: ./back clean compile  # Run Maven from the 'back' directory
 
   # Build job
   build:
@@ -49,7 +49,7 @@ jobs:
         run: chmod +x ./back/mvnw  # Give execute permission to mvnw
 
       - name: Build the project
-        run: ./back/mvnw clean package  # Use Maven wrapper from 'back' directory to build the project
+        run: ./back/mvnw clean package  # Run Maven from the 'back' directory
 
   # Docker build and push job
   build-image:

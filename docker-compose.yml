@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+
+  mysql-db:
+    container_name: mysql-db
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: ramzi
+      MYSQL_DATABASE: parapharmacy
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ramzi
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3308:3306
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  backend:
+    container_name: backend
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/parapharmacy  # Changed from host.docker.internal
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ramzi
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_GENERATE_DDL: true
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
+    networks:
+      - app-network
+    depends_on:
+      - mysql-db
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local

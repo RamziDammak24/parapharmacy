@@ -37,6 +37,7 @@ public class ProductServiceImpl implements ProductService {
 
         return savedProductDTO;
     }
+    @Override
     public List<Product> getAllProducts() {
         return productrepository.findAll();
     }

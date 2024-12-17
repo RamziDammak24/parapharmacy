@@ -10,7 +10,6 @@
         [rows]="12" 
         filterBy="name" 
         layout="grid">
-        
         <ng-template let-product pTemplate="gridItem">
             <div class="grid grid-nogutter">
                 <div class="col-12 md:col-6 lg:col-4" *ngFor="let product of CartProductsWithQuantities | async">

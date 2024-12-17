@@ -1,51 +1,42 @@
 <div class="col-5 flex align-items-center justify-content-center">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="p-fluid">
-        <!-- Display validation messages -->
         <p-messages [(value)]="messages"></p-messages>
   
-        <!-- Name field -->
         <div class="field">
           <label for="name">Nom</label>
           <input pInputText id="firstName" formControlName="firstName" type="text" />
         </div>
   
-        <!-- Lastname field -->
         <div class="field">
           <label for="lastname">Prénom</label>
           <input pInputText id="name" formControlName="name" type="text" />
         </div>
   
-        <!-- Email field -->
         <div class="field">
           <label for="email">Email</label>
           <input pInputText id="email" formControlName="email" type="email" />
         </div>
   
-        <!-- Birthdate field -->
         <div class="field">
           <label for="birthdate">Date de naissance</label>
           <input pInputText id="birthdate" formControlName="birthdate" type="date" />
         </div>
   
-        <!-- Password field -->
         <div class="field">
           <label for="password">Mot de passe</label>
           <input pInputText id="password" formControlName="password" type="password" />
         </div>
   
-        <!-- Confirm password field -->
         <div class="field">
           <label for="confirmPassword">Confirmer le mot de passe</label>
           <input pInputText id="confirmPassword" formControlName="confirmPassword" type="password" />
         </div>
   
-        <!-- Submit button -->
         <div class="button-group">
           <p-button label="Inscription" class="register-button" type="submit"></p-button>
         </div>
   
-        <!-- Login page button -->
         <div class="button-group spacer">
           <p-button label="Page de connexion" class="connexion-button" (click)="login()"></p-button>
         </div>

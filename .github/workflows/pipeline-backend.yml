@@ -26,7 +26,7 @@ jobs:
         run: chmod +x ./back/mvnw  # Ensure mvnw script is executable
 
       - name: Compile using Maven
-        run: ./back/mvnw clean compile  # Run Maven from the /back folder (where the pom.xml is)
+        run: cd back && ./mvnw clean compile  # Change directory to 'back' and run Maven
 
   # Build job
   build:
@@ -49,7 +49,7 @@ jobs:
         run: chmod +x ./back/mvnw  # Ensure mvnw script is executable
 
       - name: Build the project
-        run: ./back/mvnw clean package  # Run Maven from the /back folder
+        run: cd back && ./mvnw clean package  # Change directory to 'back' and run Maven
 
   # Docker build and push job
   build-image:

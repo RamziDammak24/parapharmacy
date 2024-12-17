@@ -23,10 +23,10 @@ jobs:
           java-version: 17  # Specify Java version 17
 
       - name: Give execute permission to mvnw
-        run: chmod +x ./back/mvnw  # Give execute permission to mvnw
+        run: chmod +x ./back/mvnw  # Ensure mvnw script is executable
 
       - name: Compile using Maven
-        run: ./back/mvnw clean compile  # Run Maven from the 'back' directory
+        run: ./back/mvnw clean compile  # Run Maven from the /back folder (where the pom.xml is)
 
   # Build job
   build:
@@ -46,10 +46,10 @@ jobs:
           java-version: 17
 
       - name: Give execute permission to mvnw
-        run: chmod +x ./back/mvnw  # Give execute permission to mvnw
+        run: chmod +x ./back/mvnw  # Ensure mvnw script is executable
 
       - name: Build the project
-        run: ./back/mvnw clean package  # Run Maven from the 'back' directory
+        run: ./back/mvnw clean package  # Run Maven from the /back folder
 
   # Docker build and push job
   build-image:
@@ -70,5 +70,5 @@ jobs:
 
       - name: Build and push Docker image to Docker Hub
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/parapharmacy-backend:latest .  # Build the Docker image
-          docker push ${{ secrets.DOCKER_USERNAME }}/parapharmacy-backend:latest  # Push the Docker image to Docker Hub
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/parapharmacy-backend:latest ./back  # Build Docker image from /back directory
+          docker push ${{ secrets.DOCKER_USERNAME }}/parapharmacy-backend:latest  # Push Docker image to Docker Hub

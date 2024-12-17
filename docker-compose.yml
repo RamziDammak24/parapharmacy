@@ -1,17 +1,16 @@
 version: "3.8"
 
 services:
-
   mysql-db:
     container_name: mysql-db
     image: mysql:8
     environment:
-      MYSQL_ROOT_PASSWORD: ramzi              # Set the root password
-      MYSQL_DATABASE: parapharmacy            # Define the database to be created
+      MYSQL_ROOT_PASSWORD: ramzi
+      MYSQL_DATABASE: parapharmacy
     volumes:
-      - mysql_data:/var/lib/mysql             # Persist MySQL data
+      - mysql_data:/var/lib/mysql
     ports:
-      - 3308:3306                             # Map MySQL port
+      - 3308:3306
     networks:
       - app-network
     restart: unless-stopped
@@ -25,9 +24,9 @@ services:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: dev
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/parapharmacy  # MySQL URL
-      SPRING_DATASOURCE_USERNAME: root      # Use root as the database user
-      SPRING_DATASOURCE_PASSWORD: ramzi    # Use the root password
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/parapharmacy
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ramzi
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
       SPRING_JPA_SHOW_SQL: true
       SPRING_JPA_GENERATE_DDL: true
@@ -37,6 +36,7 @@ services:
       - app-network
     depends_on:
       - mysql-db
+    entrypoint: ["sh", "-c", "until mysql -h mysql-db -u root -pramzi -e 'select 1'; do sleep 1; done; java -jar /app/backend.jar"]  # wait for MySQL to be ready before starting
 
   frontend:
     container_name: frontend

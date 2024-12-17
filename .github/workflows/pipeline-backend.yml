@@ -22,11 +22,8 @@ jobs:
           distribution: 'corretto'  # Use Amazon Corretto JDK
           java-version: 17  # Specify Java version 17
 
-      - name: Make mvnw executable
-        run: chmod +x ./mvnw  # Ensure the mvnw script is executable
-
       - name: Compile using Maven
-        run: ./mvnw clean compile  # Use Maven wrapper to compile
+        run: ./back/mvnw clean compile  # Use Maven wrapper from 'back' directory to compile
 
   # Build job
   build:
@@ -46,7 +43,7 @@ jobs:
           java-version: 17
 
       - name: Build the project
-        run: ./mvnw clean package  # Use Maven wrapper to build the project
+        run: ./back/mvnw clean package  # Use Maven wrapper from 'back' directory to build the project
 
   # Docker build and push job
   build-image:
